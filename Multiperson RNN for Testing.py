@@ -71,9 +71,7 @@ def my_RNN_multiperson(z, num_person):
             self.fc = nn.Linear(hidden_size*2, num_classes)
             
         def forward(self, x):
-            # Set initial hidden states (and cell states for LSTM)
             h0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size).to(device) 
-            # Forward propagate RNN
             out, _ = self.gru(x, h0)  
             out = out[:, -1, :]      
             out = self.fc(out)
